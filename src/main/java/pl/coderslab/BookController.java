@@ -31,7 +31,7 @@ public class BookController {
         }
         return response;
     }
-    @RequestMapping("/{id}")
+    @GetMapping ("/{id}")
     @ResponseBody
     public String getById(@PathVariable String id) {
         List<Book> books = mockBookService.getList();
