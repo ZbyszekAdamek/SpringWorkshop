@@ -21,5 +21,18 @@ public class MockBookService {
         list.add(new Book(3L, "9780130819338", "Java	2.	Podstawy", "Cay	Horstmann,	Gary	Cornell", "Helion",
                 "programming"));
     }
+    public List<Book> getList() {
+        return list;
+    }
 
+    public void removeBook(Book book){
+        this.list.remove(book);
+    }
+
+    @Override
+    public String toString() {
+        return "MockBookService{" +
+                "list=" + list +
+                '}';
+    }
 }
