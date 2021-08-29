@@ -1,7 +1,6 @@
 package pl.coderslab;
 
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -10,7 +9,7 @@ public class BookController {
 
     private final MockBookService mockBookService;
 
-    public BookController(MockBookService mockBookService){
+    public BookController(MockBookService mockBookService) {
         this.mockBookService = mockBookService;
     }
 
@@ -31,11 +30,25 @@ public class BookController {
         }
         return response;
     }
-    @GetMapping ("/{id}")
+
+    @GetMapping("/{id}")
     @ResponseBody
     public String getById(@PathVariable String id) {
         List<Book> books = mockBookService.getList();
         return books.get(Integer.parseInt(id) - 1).toString();
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    public void removeById(@PathVariable String id) {
+        /*List<Book> books = mockBookService.getList();
+        return books.remove(Integer.parseInt(id) - 1).toString();*/
+        mockBookService.removeBook(id);
+    }
+
+    @PostMapping("")
+    public void addBook(@RequestBody Book book) {
+        mockBookService.addBook(book);
     }
 }
 

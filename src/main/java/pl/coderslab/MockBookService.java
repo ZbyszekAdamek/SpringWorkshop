@@ -25,9 +25,14 @@ public class MockBookService {
         return list;
     }
 
-    public void removeBook(Book book){
-        this.list.remove(book);
+    public void removeBook(String id){
+        this.list.remove(Integer.parseInt(id) - 1).toString();
     }
+    public void addBook(Book book) {
+        book.setId(nextId++);
+        list.add(book);
+    }
+
 
     @Override
     public String toString() {
