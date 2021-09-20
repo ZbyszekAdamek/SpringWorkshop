@@ -1,6 +1,9 @@
 package pl.coderslab;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 @RestController
@@ -32,17 +35,18 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    @ResponseBody
-    public String getById(@PathVariable String id) {
-        List<Book> books = bookService.getList();
-        return books.get(Integer.parseInt(id) - 1).toString();
+    public Book getBook(@PathVariable Long id) {
+        return this.bookService.getBookById(id).orElseThrow(() -> {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "entity not found"
+            );
+        });
     }
+
 
     @DeleteMapping("/{id}")
     @ResponseBody
     public void removeById(@PathVariable String id) {
-        /*List<Book> books = mockBookService.getList();
-        return books.remove(Integer.parseInt(id) - 1).toString();*/
         bookService.removeBook(id);
     }
 
@@ -50,5 +54,12 @@ public class BookController {
     public void addBook(@RequestBody Book book) {
         bookService.addBook(book);
     }
+
+    @PutMapping("")
+    @ResponseBody
+    public void updateBook(@RequestBody Book book) {
+        bookService.editBook(book);
+    }
+
 }
 
