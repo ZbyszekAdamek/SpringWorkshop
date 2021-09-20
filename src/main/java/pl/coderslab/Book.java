@@ -1,7 +1,5 @@
 package pl.coderslab;
 
-import org.springframework.stereotype.Component;
-
 public class Book {
 
     private Long id;

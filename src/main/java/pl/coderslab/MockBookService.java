@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class MockBookService {
+public class MockBookService implements BookService{
 
     private static Long nextId = 4L;
 
@@ -25,14 +25,25 @@ public class MockBookService {
         return list;
     }
 
-    public void removeBook(String id){
+    @Override
+    public Book getBookById(Long id) {
+        return null;
+    }
+
+    @Override
+    public void removeBook(String id) {
         this.list.remove(Integer.parseInt(id) - 1).toString();
     }
+
     public void addBook(Book book) {
         book.setId(nextId++);
         list.add(book);
     }
 
+    @Override
+    public void editBook(Book book) {
+
+    }
 
     @Override
     public String toString() {

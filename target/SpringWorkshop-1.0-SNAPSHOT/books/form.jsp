@@ -13,12 +13,17 @@
 <body>
 
 <form action="/books/form" method="post">
-    <input type="text" name="isbn">
-    <input type="text" name="title">
-    <input type="text" name="author">
-    <input type="text" name="publisher">
-    <input type="text" name="type">
-    <input type="submit" value="Wyślij">
+    Isbn:
+    <input type="text" name="isbn"><br/>
+    Tytuł:
+    <input type="text" name="title"><br/>
+    Autor:
+    <input type="text" name="author"><br/>
+    Wydawca:
+    <input type="text" name="publisher"><br/>
+    Tekst:
+    <input type="text" name="type"><br/>
+    <input type="submit" value="Wyślij"><br/>
 </form>
 
 </body>

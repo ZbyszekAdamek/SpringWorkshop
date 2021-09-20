@@ -7,10 +7,10 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private final MockBookService mockBookService;
+    private final BookService bookService;
 
-    public BookController(MockBookService mockBookService) {
-        this.mockBookService = mockBookService;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @RequestMapping("/helloBook")
@@ -22,11 +22,11 @@ public class BookController {
 
     @GetMapping("")
     public String showAll() {
-        List<Book> books = mockBookService.getList();
+        List<Book> books = bookService.getList();
 
         String response = "";
         for (int i = 0; i < books.size(); i++) {
-            response = response + books.get(i).toString() + "<br/>";
+            response = response + books.get(i).toString();
         }
         return response;
     }
@@ -34,7 +34,7 @@ public class BookController {
     @GetMapping("/{id}")
     @ResponseBody
     public String getById(@PathVariable String id) {
-        List<Book> books = mockBookService.getList();
+        List<Book> books = bookService.getList();
         return books.get(Integer.parseInt(id) - 1).toString();
     }
 
@@ -43,12 +43,12 @@ public class BookController {
     public void removeById(@PathVariable String id) {
         /*List<Book> books = mockBookService.getList();
         return books.remove(Integer.parseInt(id) - 1).toString();*/
-        mockBookService.removeBook(id);
+        bookService.removeBook(id);
     }
 
     @PostMapping("")
     public void addBook(@RequestBody Book book) {
-        mockBookService.addBook(book);
+        bookService.addBook(book);
     }
 }
 
